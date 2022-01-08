@@ -8,6 +8,9 @@ public final class Gift {
     private final Double price;
     private final Category category;
 
+    /**
+     * Gift copy constructor based on a gift's input data
+     */
     public Gift(final GiftInput gift) {
         this.productName = gift.getProductName();
         this.price = gift.getPrice();

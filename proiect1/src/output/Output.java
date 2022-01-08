@@ -17,6 +17,9 @@ public final class Output {
         return annualChildren;
     }
 
+    /**
+     * Method adding a list of annual children to the output
+     */
     public void addAnnualChildren(final AnnualChildren newAnnualChildren) {
         this.annualChildren.add(newAnnualChildren);
     }

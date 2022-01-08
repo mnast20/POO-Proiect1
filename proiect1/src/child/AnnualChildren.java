@@ -9,8 +9,12 @@ public final class AnnualChildren {
         return children;
     }
 
+    /**
+     * Method for deep copying a list
+     */
     public void addChildrenList(final ArrayList<Child> childrenList) {
         for (Child child: childrenList) {
+            // create a copy of child and add copy to the list
             children.add(new Child(child));
         }
     }

@@ -22,6 +22,9 @@ public class Child {
     private Double assignedBudget;
     private ArrayList<Gift> receivedGifts;
 
+    /**
+     * Child copy constructor based on a child's input data
+     */
     public Child(final ChildInput child) {
         this.id = child.getId();
         this.lastName = child.getLastName();
@@ -36,6 +39,9 @@ public class Child {
         this.receivedGifts = new ArrayList<>();
     }
 
+    /**
+     * Child copy constructor based on another child
+     */
     public Child(final Child child) {
         this.id = child.id;
         this.lastName = child.lastName;
@@ -97,38 +103,62 @@ public class Child {
         this.assignedBudget = assignedBudget;
     }
 
+    /**
+     * Method calculating a child's average score
+     */
     public void calculateAverageScore() {
         averageScore = 0.0;
     }
 
+    /**
+     * Method calculating a child's assigned Santa budget
+     */
     public void calculateSantaBudget() {
         assignedBudget = SantaDatabase.getSantaDatabase().getBudgetUnit() * averageScore;
     }
 
+    /**
+     * Method incrementing a child's age
+     */
     public void age() {
         age++;
     }
 
+    /**
+     * Method searching for a Category inside a child's Gifts Preferences list
+     * and returning the index
+     */
     public int searchCategory(final Category searchedCategory) {
         int i = 0;
         for (Category category: giftsPreferences) {
             if (searchedCategory == category) {
+                // Category was found
                 return i;
             }
             i++;
         }
+        // Category wasn't found
         return -1;
     }
 
+    /**
+     * Method adding nice score to the child's nice score history and recalculating average score
+     */
     public void addNiceScore(final Double niceScore) {
         if (niceScore == null) {
             return;
         }
+        // add new score to child's nice score list
         niceScoreHistory.add(niceScore);
+        // recalculate average score
         this.calculateAverageScore();
     }
 
+    /**
+     * Method adding new Categories to child's Gift Preferences List
+     */
     public void addGiftPreferences(final ArrayList<Category> newGiftPreferences) {
+        // check if there are categories to add to the gift preferences list
         if (newGiftPreferences == null) {
             return;
         }
@@ -136,24 +166,37 @@ public class Child {
         ListIterator<Category> categoryIterator =
                 newGiftPreferences.listIterator(newGiftPreferences.size());
 
+        // iterate through the new Gift Preferences list in reverse order
         while (categoryIterator.hasPrevious()) {
             Category category = categoryIterator.previous();
+            // search the new Category inside the child's Gift Preferences list
             int foundCategory = this.searchCategory(category);
 
             if (foundCategory != 0) {
+                // add Category at the start of child's Gift Preferences list
                 giftsPreferences.add(0, category);
                 if (foundCategory != -1) {
+                    // Category was found inside the child's Gift Preferences list
+                    // remove the existing Category
                     giftsPreferences.remove(foundCategory + 1);
                 }
             }
         }
     }
 
+    /**
+     * Method applying an update to a child
+     */
     public void applyUpdate(final ChildUpdate update) {
+        // add new nice score to child's nice score list
         this.addNiceScore(update.getNiceScore());
+        // add Category to child's gifts preferences list
         this.addGiftPreferences(update.getGiftsPreferences());
     }
 
+    /**
+     * Method clearing a child's Received Gifts List
+     */
     public void clearReceivedGifts() {
         receivedGifts = new ArrayList<>();
     }
