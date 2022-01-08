@@ -1,10 +1,10 @@
 package child;
 
+import child.visitor.ChildVisitor;
+import child.visitor.Visitor;
 import input.ChildInput;
 
 public final class Baby extends Child {
-    public static final Double MAXIMUM_SCORE = 10.0;
-
     /**
      * Baby copy constructor based on a child's input data
      */
@@ -22,10 +22,17 @@ public final class Baby extends Child {
     }
 
     /**
+     * Method accepting a visitor and allowing it to visit
+     */
+    public void accept(final Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
      * Method calculating a baby's average nice score
      */
     public void calculateAverageScore() {
-        // baby's average nice score is always set as 10
-        this.setAverageScore(MAXIMUM_SCORE);
+        Visitor visitor = new ChildVisitor();
+        this.accept(visitor);
     }
 }

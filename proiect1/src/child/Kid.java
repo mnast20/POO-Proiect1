@@ -1,5 +1,7 @@
 package child;
 
+import child.visitor.ChildVisitor;
+import child.visitor.Visitor;
 import input.ChildInput;
 
 public final class Kid extends Child {
@@ -20,21 +22,17 @@ public final class Kid extends Child {
     }
 
     /**
+     * Method accepting a visitor and allowing it to visit
+     */
+    public void accept(final Visitor visitor) {
+        visitor.visit(this);
+    }
+
+    /**
      * Method calculating a kid's average nice score
      */
     public void calculateAverageScore() {
-        Double numerator = 0.0;
-        int size = this.getNiceScoreHistory().size();
-
-        if (size == 0) {
-            this.setAverageScore(0.0);
-            return;
-        }
-
-        // calculate arithmetic average score of the nice score history list
-        for (Double niceScore: this.getNiceScoreHistory()) {
-            numerator += niceScore;
-        }
-        this.setAverageScore(numerator / size);
+        Visitor visitor = new ChildVisitor();
+        this.accept(visitor);
     }
 }
