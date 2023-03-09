@@ -42,7 +42,8 @@ Class extending the Child class and representing a child aged 12 - 18. For this 
 Class containing a method for searching a child in Database based on a given id, a method for aging all children inside the Database and putting them in their respective age groups, a method for removing all adults from the Santa's Database and a method for calculating the assigned budgets for all the children in the Database.
 
 ## Gift Classes:
-### Gift: Class storing present's data; its price, its category and its name
+### Gift:
+Class storing present's data; its price, its category and its name
 
 ### GiftUtil: Class including a method for finding a gift with the minimum price inside a given list of presents, a method for searching all gifts that fall in a required category, a method for delivering gifts to a child and another method for delivering gifts to all the children in the Database. In order to deliver gifts to a child, his list of gifts preferences is traversed and for every category, the lowest priced gift will be added to the child's list of received gifts until the assigned budget was spent.
 
