@@ -45,7 +45,8 @@ Class containing a method for searching a child in Database based on a given id,
 ### Gift:
 Class storing present's data; its price, its category and its name
 
-### GiftUtil: Class including a method for finding a gift with the minimum price inside a given list of presents, a method for searching all gifts that fall in a required category, a method for delivering gifts to a child and another method for delivering gifts to all the children in the Database. In order to deliver gifts to a child, his list of gifts preferences is traversed and for every category, the lowest priced gift will be added to the child's list of received gifts until the assigned budget was spent.
+### GiftUtil:
+Class including a method for finding a gift with the minimum price inside a given list of presents, a method for searching all gifts that fall in a required category, a method for delivering gifts to a child and another method for delivering gifts to all the children in the Database. In order to deliver gifts to a child, his list of gifts preferences is traversed and for every category, the lowest priced gift will be added to the child's list of received gifts until the assigned budget was spent.
 
 ## Year Class:
 Class containing a method handling year changes. First, all the children age and the adults are removed from the Database. For every child update, the child is searched in the Database based on the id mentioned in the update. If he is found, a new nice score can be added to his list of nice score history and/or his list of preferences will be updated, adding the new preferred categories at the start of the list. After, if need be, Santa's budget will be updated and new children and gifts are added to the Database. Then, the budget unit and the assigned budget are recalculated.
